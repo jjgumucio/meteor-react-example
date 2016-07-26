@@ -3,9 +3,9 @@ import { check } from 'meteor/check'
 import Resumes from '../../imports/api/collections/resumes'
 
 /**
- * Meteor uses a "publication/subscription" method to "publish" data to the
+ * Meteor uses a "publication/subscription" system to "publish" data to the
  * clients. On the server, we publish data and on the client we subscribe to
- * this data
+ * this data (check: imports/ui/examples/resumes/index.jsx line 81)
  */
 
 // This publication allows clients to access the Resumes documents
