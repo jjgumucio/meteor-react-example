@@ -1,30 +1,37 @@
+/**
+ * Compenent for creating a new Resume
+ */
+
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 import Snackbar from 'material-ui/Snackbar'
 
-const propTypes = {
-
-}
-
-const defaultProps = {
-
-}
-
 export default class Create extends React.Component {
 
   constructor (props) {
     super(props)
+    /**
+     * The state object is used to keep track of the component state.
+     * On state you can save anything. Use it to register event changes, etc.
+     */
     this.state = {
+      // saveMessage will be used to display a material-ui Snackbar component
       saveMessage: false
     }
+    /**
+     * We pass this component as "this" to the submitForm method so that the method
+    * can access the component properties and other methods
+     */
     this.submitForm = this.submitForm.bind(this)
   }
 
   submitForm () {
-    // Usamos un método para el guardado del form solo para desmostrar el uso
-    // de los métodos. Podríamos haber hecho el update desde aquí mismo
+    /**
+     * We call a method to save the new Resume to de DB. We could also just
+     * call the "collection.insert" method directly here.
+     */
     const inputValues = {
       firstName: this.refs.firstName.value,
       birthday: this.refs.birthday.value,
@@ -36,6 +43,7 @@ export default class Create extends React.Component {
         console.log(error)
       }
 
+      // Update the saveMessage key on the components state object
       this.setState({saveMessage: true})
     })
   }
@@ -63,6 +71,3 @@ export default class Create extends React.Component {
   }
 
 }
-
-Create.propTypes = propTypes
-Create.defaultProps = defaultProps

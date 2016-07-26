@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor'
 
-// Define a colection using Meteor wrapper for Mongo
+// Define a colection using Meteor wrapper for Mongo collections
 const Resumes = new Meteor.Collection('resumes')
 
 /** Assign a schema for the model using for validation using SimpleSchema:

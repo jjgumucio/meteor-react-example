@@ -1,6 +1,11 @@
 import React from 'react'
 import {FlowRouter} from 'meteor/kadira:flow-router'
 
+/**
+ * Simplest example of a React compenent.
+ * A React component needs only a render method. This method must return the
+ * HTML dom of the compenent
+ */
 export default class Home extends React.Component {
   render () {
     return (
