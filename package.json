@@ -1,0 +1,27 @@
+{
+  "name": "meteor-react-example",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "watch-form": "watch npm\\ run\\ update-form ../form/src",
+    "update-form": "npm i ../form",
+    "watch-material": "watch npm\\ run\\ update-material ../material-ui/src",
+    "update-material": "npm i ../material-ui"
+  },
+  "dependencies": {
+    "material-ui": "^0.15.2",
+    "meteor-node-stubs": "^0.2.3",
+    "moment": "^2.14.1",
+    "react": "^15.2.1",
+    "react-addons-pure-render-mixin": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-mounter": "^1.2.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "underscore": "^1.8.3"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joaquín Gumucio L. <jjgumucio@gmail.com>",
+  "license": "MIT",
+  "description": "Example use of Meteor with React, FlowRouter & material-ui"
+}
