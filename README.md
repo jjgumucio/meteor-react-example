@@ -1,24 +1,23 @@
-# Simple React Form Examples
+# Simple React Form Example
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
-Simple React Form is a powerful framework that simplifies the use of forms in React.
-
-This is a Meteor app with examples
+This explample showcases how to use Meteor with React as the front-end library,
+FlowRouter for app routes and some material-ui to make ux/design easier.
 
 ## Instructions
 
 Download the code
 
 ```
-git clone https://github.com/nicolaslopezj/simple-react-form-examples
+git clone https://github.com/jjgumucio/meteor-react-example
 ```
 
 Run the app
 
 ```
-cd simple-react-form-examples
+cd meteor-react-example
 meteor
 ```
 
-Now go to ```localhost:3000```
+Browse to ```localhost:3000```
