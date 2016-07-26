@@ -2,19 +2,28 @@ import { Meteor } from 'meteor/meteor'
 import { check } from 'meteor/check'
 import Resumes from '../../imports/api/collections/resumes'
 
-// Publicación para acceder a todos los Resume
-Meteor.publish('listResumes', function () {
-  // Debiesemos chequear los permisos del usuario
-  // Recomendación: https://github.com/nicolaslopezj/roles
+/**
+ * Meteor uses a "publication/subscription" method to "publish" data to the
+ * clients. On the server, we publish data and on the client we subscribe to
+ * this data
+ */
 
+// This publication allows clients to access the Resumes documents
+Meteor.publish('listResumes', function () {
+  /**
+   * You should check the clients permission and grant access if appropiate
+   * Package recomendation for Roles management: https://github.com/nicolaslopezj/roles
+   */
   return Resumes.find()
 })
 
-// Publicación para obtener un Resume dado su id
+// This publication return a Resume document given its id
 Meteor.publish('updateResume', function (resumeId) {
   check(resumeId, String)
-  // Debiesemos chequear los permisos del usuario
-  // Recomendación: https://github.com/nicolaslopezj/roles
+  /**
+   * You should check the clients permission and grant access if appropiate
+   * Package recomendation for Roles management: https://github.com/nicolaslopezj/roles
+   */
 
   return Resumes.find(resumeId)
 })
