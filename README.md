@@ -10,6 +10,7 @@ All code is fully commented for easier understanding
 If you have any questions/suggestion contact me at:
 
 Email: jjgumucio@gmail.com
+
 Twitter: @joacogumuciol
 
 ## Instructions
