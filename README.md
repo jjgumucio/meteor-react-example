@@ -13,10 +13,16 @@ Download the code
 git clone https://github.com/jjgumucio/meteor-react-example
 ```
 
-Run the app
+Install modules and dependencies
 
 ```
 cd meteor-react-example
+npm i
+```
+
+Run the app
+
+```
 meteor
 ```
 

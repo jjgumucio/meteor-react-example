@@ -2,10 +2,13 @@ import { Meteor } from 'meteor/meteor'
 import { check } from 'meteor/check'
 import Resumes from '../../imports/api/collections/resumes'
 
+/**
+ * Methods are used to run code on the server and optionally, send a response
+ * to the client (ex: APIs, do computationsm etc).
+ * In Meteor, methods are functions declared as values of a Simple
+ * object that is in turn, passed to the Meteor.methods function
+ */
 Meteor.methods({
-  // Mótodo de muestra, se usan para ejecutar funcionalidad en el servidad y
-  // opcionalmente devolverle algo al cliente.
-  // En un método puedo, jugar con la DB, llamar APIs, manejar/procesar datos, etc
   'createResume': function ({firstName, birthday, bio}) {
     check(firstName, String)
     check(birthday, String)
