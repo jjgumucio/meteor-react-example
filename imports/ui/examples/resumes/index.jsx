@@ -14,19 +14,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Resumes from '../../../api/collections/resumes'
 
 /**
- * createContainer function is used to fetch and inject data from the DB.
- * Components should be "dumb" and presentational only.
- * This function subscribes to N publications, queries the DB and returns the
- * data in the form of 'props' (object). It inyects this props to the passed in component,
- * in this case: Index
- */
-export default createContainer(() => {
-  Meteor.subscribe('listResumes')
-  const resumes = Resumes.find().fetch()
-  return { resumes }
-}, Index)
-
-/**
  * Definition of the Index component that will use the data "inyected" by the
  * createContainer function
  * Define the props (propeties/params) that this component will need/use.
@@ -40,7 +27,7 @@ const propTypes = {
   resumes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
 }
 
-class Index extends React.Component {
+class ResumesList extends React.Component {
 
   constructor (props) {
     super(props)
@@ -74,7 +61,6 @@ class Index extends React.Component {
   }
 
   render () {
-    console.log('asdf')
     return (
       <Paper style={{padding: 20}}>
         <h3>Listing of Resumes</h3>
@@ -90,4 +76,18 @@ class Index extends React.Component {
 }
 
 // We assign the defined props to this component
-Index.propTypes = propTypes
+ResumesList.propTypes = propTypes
+
+/**
+ * createContainer function is used to fetch and inject data from the DB.
+ * Components should be "dumb" and presentational only.
+ * This function subscribes to N publications, queries the DB and returns the
+ * data in the form of 'props' (object). It inyects this props to the passed in component,
+ * in this case: Index
+ */
+export default createContainer(() => {
+  Meteor.subscribe('listResumes')
+  const resumes = Resumes.find().fetch()
+  console.log('resumes:', resumes)
+  return { resumes }
+}, ResumesList)
