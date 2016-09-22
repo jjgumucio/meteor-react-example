@@ -34,7 +34,7 @@ export default createContainer(() => {
 const propTypes = {
   /**
    * Prop validation (it's not enforced)
-   * This props can be accessed in the componet using "this.props.propName".
+   * Props can be accessed in the componet using "this.props.propName".
    * This component uses an array of Resume objects
    */
   resumes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
@@ -56,7 +56,7 @@ class Index extends React.Component {
   renderResumes () {
     return _.map(this.props.resumes, resume => {
       /**
-       * This section should be in its own component, imported and used here
+       * This section could be in its own component, imported and used here
        * Heres some homework!
        */
       return (
@@ -74,6 +74,7 @@ class Index extends React.Component {
   }
 
   render () {
+    console.log('asdf')
     return (
       <Paper style={{padding: 20}}>
         <h3>Listing of Resumes</h3>
