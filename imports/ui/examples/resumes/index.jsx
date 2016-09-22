@@ -87,6 +87,5 @@ ResumesList.propTypes = propTypes
 export default createContainer(() => {
   Meteor.subscribe('listResumes')
   const resumes = Resumes.find().fetch()
-  console.log('resumes:', resumes)
   return { resumes }
 }, ResumesList)

@@ -8,9 +8,10 @@ import Snackbar from 'material-ui/Snackbar'
 
 import Resumes from '../../../api/collections/resumes'
 
-// Define the props that the component requires
+// Define the props (propeties/params) that this component will need/use
 const propTypes = {
-  resume: React.PropTypes.object.isRequired
+  resume: React.PropTypes.object,
+  isLoading: React.PropTypes.bool
 }
 
 const defaultProps = {
@@ -40,7 +41,7 @@ class Update extends React.Component {
       birthday: this.refs.birthday.value,
       bio: this.refs.bio.value
     }
-    Resumes.update({_id: this.props.resume._id}, inputValues, (error, response) => {
+    Resumes.update({_id: this.props.resume._id}, {$set: inputValues}, (error, response) => {
       if (error) {
         console.log(error)
       }
@@ -59,8 +60,23 @@ class Update extends React.Component {
     })
   }
 
+  formatDate () {
+    const month = this.props.resume.birthday.getMonth() + 1
+    const day = this.props.resume.birthday.getDate()
+
+    const dateArray = [
+      this.props.resume.birthday.getFullYear(),
+      month > 9 ? month : '0' + month.toString(),
+      day > 9 ? day : '0' + day.toString()
+    ]
+
+    return dateArray.join('-')
+  }
+
   // The render method is the only required one. It must return classic DOM hierachy
   render () {
+    // If the prop "resume" is not loaded yet, we can show a Loading component for example
+    if (this.props.isLoading) return (<div>Loading...</div>)
     return (
       // We are using Material-ui components: http://www.material-ui.com/
       <Paper style={{padding: 20, marginBottom: 10}}>
@@ -68,15 +84,15 @@ class Update extends React.Component {
         <form>
           <p>
             <b>First Name:</b>
-            <input label='First Name' type='text' ref='firstName' value={this.props.resume.firstName} />
+            <input label='First Name' type='text' ref='firstName' defaultValue={this.props.resume.firstName} />
           </p>
           <p>
             <b>Birthday:</b>
-            <input label='Birthday' type='date' ref='birthday' value={this.props.resume.birthday} />
+            <input label='Birthday' type='date' ref='birthday' defaultValue={this.formatDate(this.props.resume.birthday)} />
           </p>
           <p>
             <b>Bio:</b>
-            <textarea label='Bio' ref='bio' rows='5' cols='50' value={this.props.resume.bio}></textarea>
+            <textarea label='Bio' ref='bio' rows='5' cols='50' defaultValue={this.props.resume.bio}></textarea>
           </p>
           <RaisedButton style={{marginRight: 20}}
             primary
@@ -105,7 +121,8 @@ Update.defaultProps = defaultProps
 // hacemos querys y retornamos.
 // La función inyecta los datos como 'props' al componente Update
 export default createContainer(({resumeId}) => {
-  Meteor.subscribe('updateResume', resumeId)
+  const handler = Meteor.subscribe('updateResume', resumeId)
+  const isLoading = !handler.ready() // Returns a boolean
   const resume = Resumes.findOne(resumeId)
-  return { resume }
+  return { resume, isLoading }
 }, Update)

@@ -4,6 +4,7 @@
 
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
+import {FlowRouter} from 'meteor/kadira:flow-router'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 import Snackbar from 'material-ui/Snackbar'
@@ -55,11 +56,16 @@ export default class Create extends React.Component {
           <p><b>First Name:</b> <input label='First Name' type='text' ref='firstName' /></p>
           <p><b>Birthday:</b> <input label='Birthday' type='date' ref='birthday' /></p>
           <p><b>Bio:</b> <textarea label='Bio' ref='bio' rows='5' cols='50'></textarea></p>
-          <RaisedButton
-            primary
-            label='guardar'
-            onTouchTap={this.submitForm} />
         </form>
+        <RaisedButton
+          primary
+          label='guardar'
+          onTouchTap={this.submitForm} />
+        <RaisedButton
+          style={{marginLeft: 20}}
+          secondary
+          label='volver'
+          onTouchTap={() => FlowRouter.go('list')} />
 
         <Snackbar
           message='Resume created successfully!'
