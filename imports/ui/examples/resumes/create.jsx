@@ -39,7 +39,6 @@ export default class Create extends React.Component {
     }
     Meteor.call('createResume', inputValues, (error, response) => {
       if (error) {
-        alert(error.details)
         console.log(error)
       }
 

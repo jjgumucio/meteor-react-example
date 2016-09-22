@@ -8,7 +8,7 @@ import Snackbar from 'material-ui/Snackbar'
 
 import Resumes from '../../../api/collections/resumes'
 
-// Definimos las props (propiedades) que requiere el componente
+// Define the props that the component requires
 const propTypes = {
   resume: React.PropTypes.object.isRequired
 }
@@ -17,24 +17,24 @@ const defaultProps = {
 
 }
 
-// Definimos el componente como clase, extendiendo la clase Component de React
+// Define the component as a Class, extending React.Component
 class Update extends React.Component {
 
-  // Constructor de la clase (JS clásico)
+  // Class constructor
   constructor (props) {
     super(props)
-    // Seteamos el estado inicial del componente
+    // Set the components initial state
     this.state = {
       saveMessage: false
     }
-    // Bindeamos el objeto this (el componente mismo) a los métodos del componente
+    // Bind "this" object (reference to the component itself) to the components methods
     this.submitForm = this.submitForm.bind(this)
     this.deleteResume = this.deleteResume.bind(this)
   }
 
-  // Declaramos métodos para el componente
+  // Define methods for this class
   submitForm () {
-    // Hacemos el update directo desde el cliente sin usar un método
+    // Here we do a "direct update" from the client instead of using a method
     const inputValues = {
       firstName: this.refs.firstName.value,
       birthday: this.refs.birthday.value,
@@ -42,7 +42,6 @@ class Update extends React.Component {
     }
     Resumes.update({_id: this.props.resume._id}, inputValues, (error, response) => {
       if (error) {
-        alert(error.details)
         console.log(error)
       }
 
@@ -53,7 +52,6 @@ class Update extends React.Component {
   deleteResume () {
     Resumes.remove({_id: this.props.resume._id}, (error, response) => {
       if (error) {
-        alert(error.details)
         console.log(error)
       }
 
@@ -61,11 +59,10 @@ class Update extends React.Component {
     })
   }
 
-  // Método render que debe retornar un elemento HTML clásico
+  // The render method is the only required one. It must return classic DOM hierachy
   render () {
     return (
-      // Usamos compoentes de material-ui
-      // Documentación Material-ui: http://www.material-ui.com/
+      // We are using Material-ui components: http://www.material-ui.com/
       <Paper style={{padding: 20, marginBottom: 10}}>
         <h1>Update Resume</h1>
         <form>
@@ -81,7 +78,6 @@ class Update extends React.Component {
             <b>Bio:</b>
             <textarea label='Bio' ref='bio' rows='5' cols='50' value={this.props.resume.bio}></textarea>
           </p>
-          // RaisedButton es un componente de Material-ui
           <RaisedButton style={{marginRight: 20}}
             primary
             label='guardar'
@@ -111,6 +107,5 @@ Update.defaultProps = defaultProps
 export default createContainer(({resumeId}) => {
   Meteor.subscribe('updateResume', resumeId)
   const resume = Resumes.findOne(resumeId)
-  console.log('resume:', resume)
   return { resume }
 }, Update)

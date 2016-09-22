@@ -72,7 +72,6 @@ class ResumesList extends React.Component {
       </Paper>
     )
   }
-
 }
 
 // We assign the defined props to this component
