@@ -94,15 +94,20 @@ class Update extends React.Component {
             <b>Bio:</b>
             <textarea label='Bio' ref='bio' rows='5' cols='50' defaultValue={this.props.resume.bio}></textarea>
           </p>
-          <RaisedButton style={{marginRight: 20}}
-            primary
-            label='guardar'
-            onTouchTap={this.submitForm} />
-          <RaisedButton
-            secondary
-            label='delete'
-            onTouchTap={this.deleteResume} />
         </form>
+        <RaisedButton
+          primary
+          label='guardar'
+          onTouchTap={this.submitForm} />
+        <RaisedButton
+          style={{marginLeft: 20}}
+          secondary
+          label='delete'
+          onTouchTap={this.deleteResume} />
+        <RaisedButton
+          style={{marginLeft: 20}}
+          label='volver'
+          onTouchTap={() => FlowRouter.go('list')} />
 
         <Snackbar
           message='Resume updated successfully!'
