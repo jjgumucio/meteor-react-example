@@ -43,7 +43,7 @@ export default class Create extends React.Component {
         console.log(error)
       }
 
-      // Update the saveMessage key on the components state object
+      // Update the saveMessage key on the components state object, to show the Snackbar
       this.setState({saveMessage: true})
     })
   }
