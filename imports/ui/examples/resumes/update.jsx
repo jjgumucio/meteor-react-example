@@ -122,7 +122,7 @@ Update.propTypes = propTypes
 Update.defaultProps = defaultProps
 
 // El componente Update es "inteligente", usamos la función 'createContainer' para
-// obtener los datos desde el server. Nos suscribimos a las publicaciónes necesarias,
+// obtener los datos desde el server. Nos suscribimos a las publicaciones necesarias,
 // hacemos querys y retornamos.
 // La función inyecta los datos como 'props' al componente Update
 export default createContainer(({resumeId}) => {
