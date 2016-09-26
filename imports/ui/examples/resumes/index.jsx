@@ -14,14 +14,14 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Resumes from '../../../api/collections/resumes'
 
 /**
- * Definition of the Index component that will use the data "inyected" by the
+ * Definition of the Index component that will use the data "injected" by the
  * createContainer function
- * Define the props (propeties/params) that this component will need/use.
+ * Define the props (properties/params) that this component will need/use.
  */
 const propTypes = {
   /**
    * Prop validation (it's not enforced)
-   * Props can be accessed in the componet using "this.props.propName".
+   * Props can be accessed in the component using "this.props.propName".
    * This component uses an array of Resume objects
    */
   resumes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
@@ -44,7 +44,7 @@ class ResumesList extends React.Component {
     return _.map(this.props.resumes, resume => {
       /**
        * This section could be in its own component, imported and used here
-       * Heres some homework!
+       * Here's some homework!
        */
       return (
         <Paper style={{padding: 20, marginBottom: 10}} key={resume._id}>
@@ -81,7 +81,7 @@ ResumesList.propTypes = propTypes
  * createContainer function is used to fetch and inject data from the DB.
  * Components should be "dumb" and presentational only.
  * This function subscribes to N publications, queries the DB and returns the
- * data in the form of 'props' (object). It inyects this props to the passed in component,
+ * data in the form of 'props' (object). It injects this props to the passed in component,
  * in this case: Index
  */
 export default createContainer(() => {
