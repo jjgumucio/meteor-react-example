@@ -26,3 +26,4 @@ kadira:flow-router
 check@1.2.3
 react-meteor-data
 shell-server
+reywood:publish-composite

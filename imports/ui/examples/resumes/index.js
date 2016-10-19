@@ -12,6 +12,7 @@ import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 
 import Resumes from '../../../api/collections/resumes'
+import References from '../../../api/collections/references'
 
 /**
  * Definition of the Index component that will use the data "injected" by the
@@ -40,21 +41,49 @@ class ResumesList extends React.Component {
     )
   }
 
+  renderValidatedSkills (skills) {
+    return _.map(skills, skill => {
+      return <li key={skill}>{skill}</li>
+    })
+  }
+
+
+  renderReferences (references) {
+    return _.map(references, reference => {
+      return (
+        <li key={reference._id}>
+          <p><b>Referenced by:</b> {reference.name}</p>
+          <ul>
+            {this.renderValidatedSkills(reference.validatedSkills)}
+          </ul>
+        </li>
+      )
+    })
+  }
+
   renderResumes () {
+    /**
+     * This section could be in its own component, imported and used here
+     * Here's some homework!
+     */
     return _.map(this.props.resumes, resume => {
-      /**
-       * This section could be in its own component, imported and used here
-       * Here's some homework!
-       */
+      const references = References.find({ resumeId: resume._id }).fetch()
       return (
         <Paper style={{padding: 20, marginBottom: 10}} key={resume._id}>
           <p><b>First Name:</b> {resume.firstName}</p>
           <p><b>Birth Date:</b> {moment(resume.birthday).format('LLL')}</p>
           <p><b>Bio:</b> {resume.bio}</p>
+          <ul>
+            {this.renderReferences(references)}
+          </ul>
           <RaisedButton
             label='update'
             secondary
             onTouchTap={() => FlowRouter.go('update', {resumeId: resume._id})} />
+          <RaisedButton
+            style={{marginLeft: 20}}
+            label='add reference'
+            onTouchTap={() => FlowRouter.go('addReference', {resumeId: resume._id})} />
         </Paper>
       )
     })
@@ -85,6 +114,7 @@ ResumesList.propTypes = propTypes
  * in this case: Index
  */
 export default createContainer(() => {
+  // By subscribing to 'listResumes' we can now access de References collection
   Meteor.subscribe('listResumes')
   const resumes = Resumes.find().fetch()
   return { resumes }

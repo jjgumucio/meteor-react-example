@@ -6,6 +6,7 @@ import Layout from './layout'
 import ResumesList from './index'
 import Update from './update'
 import Create from './create'
+import AddReference from './add-reference'
 
 // FlowRouter documentation: https://github.com/kadirahq/flow-router
 FlowRouter.route('/resumes', {
@@ -36,6 +37,17 @@ FlowRouter.route('/resumes/:resumeId', {  // resumeId is a route parameter.
     mount(Layout, {
       content () {
         return <Update resumeId={resumeId} />
+      }
+    })
+  }
+})
+
+FlowRouter.route('/resumes/add-reference/:resumeId', {  // resumeId is a route parameter.
+  name: 'addReference',                         // We can make this params optional: ':resumeId?'
+  action ({resumeId}) {
+    mount(Layout, {
+      content () {
+        return <AddReference resumeId={resumeId} />
       }
     })
   }

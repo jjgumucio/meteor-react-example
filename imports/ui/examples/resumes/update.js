@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Snackbar from 'material-ui/Snackbar'
 
 import Resumes from '../../../api/collections/resumes'
+import References from '../../../api/collections/references'
 
 // Define the props (propeties/params) that this component will need/use
 const propTypes = {
